@@ -1,0 +1,17 @@
+from sqlalchemy import Column, String, Integer
+from sqlalchemy.orm import relationship
+
+from .declarative_base import Base
+from .gasto import Gasto
+
+
+class Ciudad(Base):
+    # Tabla
+    __tablename__ = 'ciudad'
+
+    # Columnas
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String)
+    
+    # Relaciones
+    ciudades = relationship('Ciudad', secondary='ciudad_viajero', backref='Viajero')
